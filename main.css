@@ -1,0 +1,42 @@
+#calcu {
+    width: 350px;
+    height: 524px;
+    border: solid 4px powderblue;
+    margin: auto;
+    margin-top: 60px;
+    font-size: 0px;
+ 
+ }
+ 
+ #input{
+    font-size: 30px;
+    background-color: skyblue;
+     width: 344px;
+     height: 140px;
+     border: 1px solid;
+     border-radius: 0px
+ }
+ 
+ .operators{
+    font-size: 30px;
+    width: 87.5px;
+    height: 76.1px;
+    float: right;
+    clear: right;
+    border: 1px solid;
+    border-radius: 0px
+ }
+ 
+ .numbers{
+    background-color: sandybrown;
+    font-size: 25px;
+    width: 87.5px;
+    height: 95px;
+    border: 1px solid;
+    border-radius: 0px;
+ }
+ 
+ input:focus, button:focus {
+     outline: none;
+ }
+ 
