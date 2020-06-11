@@ -80,7 +80,6 @@ calButtons.forEach((b) => b.addEventListener('click', function (i) {
 
     equation = (myInput.value += b.value);
 
-
     if (b.value.match(/[=+*/-]/)) {              //ever click of these math signs...
         processCounter += 1;                     //pressCount adds 1 
         integer = nexInput.join('');             //push integer into array then create a single integer
