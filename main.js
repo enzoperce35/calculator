@@ -6,9 +6,6 @@ const divide = (num1, num2) => num1 / num2;
 
 
 
-
-
-
 function operator(num1, operator, num2) {
     num1 = parseFloat(num1);
     num2 = parseFloat(num2);
@@ -29,6 +26,51 @@ function operator(num1, operator, num2) {
 
 
 
+strArray = [];
+function processNumSentence(numString) {
+const decString = (string) => string.slice(string.length-1) == '.';
+
+
+    if (numString.includes('--')) {                     //cut numbers with negative values correctly
+    negativeCount = numString.match(/--/g).length;
+   
+     
+    for (let i=0; i<negativeCount; i++) {
+        negIndex = numString.match(/--/);
+        negPos = numString.indexOf(negIndex) +1;   
+        numString = numString.replace(numString.substr(negPos, negPos+1), 'x') + numString.substr(negPos+1);
+    
+    };
+         if (numString[0] == '-') numString = numString.replace('-', 'x');
+ }
+
+
+if (numString.includes('.')) {                          //cut numbers with decimal points correctly
+      decCount = numString.match(/\./g).length;
+      numArray = numString.match(/[0-9]+[\.+*-/=]/g);
+
+for (i=0; i<decCount; i++) {
+  decIndex = numArray.findIndex(decString);
+      strArray.push(numArray[decIndex]);
+      strArray.push(numArray[decIndex + 1]);
+      numArray.splice(decIndex, 2, strArray.join(''));
+      strArray = [];
+};
+
+} else {
+    numArray = numString.match(/[0-9x]+[+*-/=]/g);
+};
+
+
+if (numString.includes('x')) {
+    
+numArray.forEach(function(r) {
+    if (r.includes('x')) numArray.splice(numArray.indexOf(r), 1, r.replace('x', '-'));
+});
+
+}
+    return numArray;
+};
 
 
 
@@ -67,34 +109,31 @@ operator(num1, mathSign, num2);
 
 
 
+finalArray = [];
+const input = document.getElementById('input');
+const buttons = document.querySelectorAll('button:not(#clear):not(#bs');
+
+buttons.forEach((b) => b.addEventListener('click', function (i) {
+input.value += b.value;
 
 
+if (!input.value.substr(input.value.indexOf('.')-1, 1).match(/[0-9]/))         //adds 0 before the decimal if user inputs a period
+        input.value = input.value.replace('.', '0.');                     
+
+   mathPhrase = processNumSentence(input.value);                               //convert the string into array
 
 
-var main = [];
-var nexInput = [];
-var processCounter = 0;
-const calButtons = document.querySelectorAll('button:not(#clear)');
-const myInput = document.getElementById('input');
-calButtons.forEach((b) => b.addEventListener('click', function (i) {
+if (b.value == '=') {                                                          //when '=' is pressed...
+processCount = mathPhrase.length -1;                                        
+mathPhrase.forEach(function(i) {                                               //refine the array
+      finalArray.push(i.substr(0, i.length -1));
+      finalArray.push(i.substr(-1));
+      
+});
 
-    equation = (myInput.value += b.value);
 
-    if (b.value.match(/[=+*/-]/)) {              //ever click of these math signs...
-        processCounter += 1;                     //pressCount adds 1 
-        integer = nexInput.join('');             //push integer into array then create a single integer
-        main.push(integer, b.value);             //push that single integer & math sign int main array
-        nexInput = [];                           //reset for the next integer
-    } else if (!b.value.match(/[=+*/-]/)){
-        nexInput.push(b.value);
-    };
-   
-    
-    if (b.value == '=') {
-        processCounter == 1 ? window.location.reload():null;
-        processCounter -= 1;
-        myInput.value = processMath(main, processCounter); 
-    };
+finalArray.pop();                                                           //ommit the '=' sign
+input.value = processMath(finalArray, processCount);                        //process the refined array for total result
+};
     document.getElementById('clear').addEventListener('click', (c) => window.location.reload());
-}))
-
+}));
