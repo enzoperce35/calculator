@@ -26,26 +26,43 @@ function operator(num1, operator, num2) {
 
 
 
-strArray = [];
+
+
+
+
+var strArray = [];
 function processNumSentence(numString) {
+
 const decString = (string) => string.slice(string.length-1) == '.';
 
+//ommit '('
+negative = numString.match(/\(/g);
+if (negative) {
+    for (let n=0; n<negative.length; n++){
+    numString = numString.replace(numString.match(/\(/), '');
+  }  
+};
 
-    if (numString.includes('--')) {                     //cut numbers with negative values correctly
-    negativeCount = numString.match(/--/g).length;
+
+    if (numString.match(/[+*/-]-/g)) {
+        negativeCount = numString.match(/[+*/-]-/g).length;             
+    
    
      
     for (let i=0; i<negativeCount; i++) {
-        negIndex = numString.match(/--/);
-        negPos = numString.indexOf(negIndex) +1;   
-        numString = numString.replace(numString.substr(negPos, negPos+1), 'x') + numString.substr(negPos+1);
-    
+        
+        negIndex = numString.match(/[+*/-]-/);
+        negPos = numString.indexOf(negIndex) +1; 
+        
+        strA = numString.replace(numString.substr(negPos, negPos+1), 'x');
+        numString = strA.substr(0, negPos+1) + numString.substr(negPos+1);
+        
     };
          if (numString[0] == '-') numString = numString.replace('-', 'x');
  }
 
 
-if (numString.includes('.')) {                          //cut numbers with decimal points correctly
+if (numString.includes('.')) {                
       decCount = numString.match(/\./g).length;
       numArray = numString.match(/[0-9]+[\.+*-/=]/g);
 
@@ -75,8 +92,9 @@ numArray.forEach(function(r) {
 
 
 
+
 function processMath(mathArray, processCount) { 
-    
+
      for (let i = 0; i < processCount; i++) {
         
         if (mathArray.includes('*') && mathArray.includes('/')) {
@@ -95,9 +113,10 @@ function processMath(mathArray, processCount) {
 
         
         mathPhrase = mathArray.slice(mathArray.indexOf(mathSign) - 1, mathArray.indexOf(mathSign) - 1 + 3);
-        num1 = parseFloat(mathPhrase[0]);
+        
+        num1 = mathPhrase[0];
         mathSign = mathPhrase[1];
-        num2 = parseFloat(mathPhrase[2]);
+        num2 = mathPhrase[2];
 
 operator(num1, mathSign, num2);
 
@@ -109,31 +128,84 @@ operator(num1, mathSign, num2);
 
 
 
-finalArray = [];
-const input = document.getElementById('input');
-const buttons = document.querySelectorAll('button:not(#clear):not(#bs');
 
-buttons.forEach((b) => b.addEventListener('click', function (i) {
+
+
+
+var newString = '';
+var finalArray = [];
+const decimal = document.getElementById('dec');
+const equal = document.getElementById('equals');
+const input = document.getElementById('input');
+input.value;
+
+
+
+
+
+const buttons = document.querySelectorAll('button:not(#clear)');
+buttons.forEach((b) => b.addEventListener('click', function (i) { 
+
+//create proper input
 input.value += b.value;
 
+//avoid irregular operation decimal input
+newString += b.value;
+if (b.value.match(/[+*/-]/) || input.value == '') newString = '';               
+decimal.disabled = (newString.match(/\./))? true:false;
 
-if (!input.value.substr(input.value.indexOf('.')-1, 1).match(/[0-9]/))         //adds 0 before the decimal if user inputs a period
-        input.value = input.value.replace('.', '0.');                     
+//fix decimal input with no integer
+if (b.value == '.' && !input.value.substr(input.value.lastIndexOf('.')-1, 1).match(/[0-9]/))         
+         input.value = input.value.replace(/.$/, '0.');
 
-   mathPhrase = processNumSentence(input.value);                               //convert the string into array
+
+//avoid irregular operation with equal sign
+(!input.value.match(/[0-9]+[+*/-](\(-)?[0-9]+/g))? document.getElementById('equals').value = '':document.getElementById('equals').value = '=';
+
+//avoid irregular operation with negative values
+if (input.value.match(/\(-b/g)) input.value = input.value.substr(0, input.value.indexOf('('));
+(newString.slice(-1).match(/(\d|\.)/) || newString.slice(-1) == 'b')? document.getElementById('neg').value = '': document.getElementById('neg').value = '(-';
+
+//avoid irregular operation with operator values
+if (input.value[0].match(/[+*/\-=]/)) input.value = '';
+  
+
+//avoid duplication
+if (input.value.match(/[*+/-][*+/-]/)) input.value = input.value.substr(0, input.value.length-1);          
+if (input.value.match(/(\(-)(\(-)/)) input.value = input.value.substr(0, input.value.length-2);          
 
 
-if (b.value == '=') {                                                          //when '=' is pressed...
-processCount = mathPhrase.length -1;                                        
-mathPhrase.forEach(function(i) {                                               //refine the array
+//backspace support
+if (input.value.includes('b')) input.value = input.value.substr(0, input.value.length-2);
+
+
+
+
+
+
+//convert string value to an array of values...
+mathPhrase = processNumSentence(input.value);
+
+
+//cut the values to proper values
+if (b.value == '=') { 
+processCount = mathPhrase.length -1;
+                                        
+mathPhrase.forEach(function(i) {
       finalArray.push(i.substr(0, i.length -1));
       finalArray.push(i.substr(-1));
-      
 });
 
 
-finalArray.pop();                                                           //ommit the '=' sign
-input.value = processMath(finalArray, processCount);                        //process the refined array for total result
+
+
+//ommit the equal sign then proceed to the math process
+finalArray.pop();
+input.value = processMath(finalArray, processCount);
 };
+    
+    //additional buttons
     document.getElementById('clear').addEventListener('click', (c) => window.location.reload());
-}));
+    document.getElementById('neg').addEventListener('click', (c) => input.value.concat(document.getElementById('neg').value));
+    
+}))
