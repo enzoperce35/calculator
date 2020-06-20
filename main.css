@@ -1,42 +1,97 @@
 #calcu {
-    width: 350px;
-    height: 524px;
-    border: solid 4px powderblue;
-    margin: auto;
-    margin-top: 60px;
-    font-size: 0px;
- 
- }
- 
- #input{
-    font-size: 30px;
-    background-color: skyblue;
-     width: 344px;
-     height: 140px;
-     border: 1px solid;
-     border-radius: 0px
- }
- 
- .operators{
-    font-size: 30px;
-    width: 87.5px;
-    height: 76.1px;
-    float: right;
-    clear: right;
-    border: 1px solid;
+   width: 600px;
+   height: 450px;
+   border: double thick rosybrown;
+   margin: auto;
+   margin-top: 60px;
+   font-size: 0px;
+   background-color: maroon;
+
+}
+
+#input{
+   font-size: 30px;
+   background-color: teal;
+   margin-left: 6px;
+   margin-top: 4px;
+    width: 96.7%;
+    height: 130px;
+    border: unset maroon 4px;
     border-radius: 0px
- }
- 
- .numbers{
-    background-color: sandybrown;
-    font-size: 25px;
-    width: 87.5px;
-    height: 95px;
-    border: 1px solid;
-    border-radius: 0px;
- }
- 
- input:focus, button:focus {
-     outline: none;
- }
- 
+}
+#allButtons {
+margin: auto;
+margin-left: 6px;
+margin-top: 6px;
+   height:299px;
+   width: 98%;
+}
+
+
+
+#thirdCont {
+   float: right;
+   height:299px;
+   width: 65px;
+}
+#numbersCont {
+   float: left;
+   height:299px;
+   width: 400px;
+}
+#secondCont {
+   float: left;
+   margin-left: 3px;
+   height:299px;
+   width: 114px
+}
+
+
+
+.numbers{
+   float: left;
+   background-color: sandybrown;
+   font-size: 25px;
+   width: 133.3px;
+   height: 75px;
+   border-radius: 0px;
+}
+.operators{
+   float: left;
+   font-size: 30px;
+   width: 100%;
+   height: 62.2px;
+}
+.operators[id ='equals'] {
+    float: left;
+    margin-left: 0px;
+    height: 124px;
+    width: 105%;
+
+}
+
+
+
+
+input:focus, button:focus {
+    outline: none;
+}
+
+#clear {
+width: 100%;
+height: 50px;
+}
+#bs {
+width: 110%;
+margin-right: -11px;
+height: 50px;
+}
+#mudolo{
+   height:124px;
+   width: 69px;
+}
+
+#blank {
+width: 100%;
+height: 66.6%;
+}
