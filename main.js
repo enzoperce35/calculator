@@ -5,7 +5,6 @@ const divide = (num1, num2) => num1 / num2;
 
 
 
-
 function operator(num1, operator, num2) {
     num1 = parseFloat(num1);
     num2 = parseFloat(num2);
@@ -26,13 +25,8 @@ function operator(num1, operator, num2) {
 
 
 
-
-
-
-
 var strArray = [];
 function processNumSentence(numString) {
-
 const decString = (string) => string.slice(string.length-1) == '.';
 
 //ommit '('
@@ -40,13 +34,12 @@ negative = numString.match(/\(/g);
 if (negative) {
     for (let n=0; n<negative.length; n++){
     numString = numString.replace(numString.match(/\(/), '');
-  }  
+    }  
 };
 
-
+    //for equations with negative values
     if (numString.match(/[+*/-]-/g)) {
         negativeCount = numString.match(/[+*/-]-/g).length;             
-    
    
      
     for (let i=0; i<negativeCount; i++) {
@@ -56,15 +49,13 @@ if (negative) {
         
         strA = numString.replace(numString.substr(negPos, negPos+1), 'x');
         numString = strA.substr(0, negPos+1) + numString.substr(negPos+1);
-        
     };
-         if (numString[0] == '-') numString = numString.replace('-', 'x');
- }
+}
 
-
-if (numString.includes('.')) {                
+//for equations with decimal points
+if (numString.includes('.')) {        
       decCount = numString.match(/\./g).length;
-      numArray = numString.match(/[0-9]+[\.+*-/=]/g);
+      numArray = numString.match(/-?x?[0-9]+[\.+*-/=]/g);
 
 for (i=0; i<decCount; i++) {
   decIndex = numArray.findIndex(decString);
@@ -75,7 +66,7 @@ for (i=0; i<decCount; i++) {
 };
 
 } else {
-    numArray = numString.match(/[0-9x]+[+*-/=]/g);
+    numArray = numString.match(/-?x?[0-9]+[+*-/=]/g);
 };
 
 
@@ -88,7 +79,6 @@ numArray.forEach(function(r) {
 }
     return numArray;
 };
-
 
 
 
@@ -138,8 +128,6 @@ const decimal = document.getElementById('dec');
 const equal = document.getElementById('equals');
 const input = document.getElementById('input');
 input.value;
-
-
 
 
 
