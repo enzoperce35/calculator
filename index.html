@@ -6,34 +6,47 @@
     <title>Calculator</title>
     <link rel="stylesheet" href="main.css">
 </head>
-<body>
+<body style="background-color: moccasin;">
     
     
-    <div id='calcu'>
-      <input type="text" id= "input"><br>
-      <button id ='clear' class = 'operators' value='clear' style="background-color: red;">C</button>
-      <button id = 'plus' class = 'operators'  value='+' style="background-color: rgb(110, 46, 126);">+</button>
-      <button id ='minus' class = 'operators'  value='-' style="background-color: rgb(11, 69, 73);">-</button>
-      <button id ='multi' class = 'operators'  value='*' style="background-color: rgb(211, 124, 160);">x</button>
-      <button id ='divide' class = 'operators'  value='/' style="background-color: rgb(223, 226, 28);">/</button>
-      <button id ='1' class = 'numbers'  value = 1 >1</button>
-      <button id ='2' class = 'numbers' value = 2>2</button>
-      <button id ='3' class = 'numbers'  value= 3>3</button><br>
-      <button id ='4' class = 'numbers'  value= 4>4</button>
-      <button id ='5' class = 'numbers'  value= 5>5</button>
-      <button id ='6' class = 'numbers'  value= 6>6</button><br>
-      <button id ='7' class = 'numbers'  value= 7>7</button>
-      <button id ='8' class = 'numbers'  value= 8>8</button>
-      <button id ='9' class = 'numbers'  value= 9>9</button><br>
-      <button id ='dec' class = 'numbers'  value='.'>.</button>
-      <button id ='0' class = 'numbers'  value= 0>0</button>
-      <button id ='equals' class = 'numbers'  value='='>=</button>
+    <div id='calcu' >
+      <input type="text" id= "input" onClick='javascript: cursorPosition()'><br/>
+      
+      
+      <div id= 'allButtons'>
+      
+           <div id = 'numbersCont'>
+                <button id ='9' class = 'numbers'  value= 9>9</button>
+                <button id ='8' class = 'numbers'  value= 8>8</button>
+                <button id ='7' class = 'numbers'  value= 7>7</button><br>
+                <button id ='6' class = 'numbers'  value= 6>6</button>
+                <button id ='5' class = 'numbers'  value= 5>5</button>
+                <button id ='4' class = 'numbers'  value= 4>4</button><br>
+                <button id ='3' class = 'numbers'  value= 3>3</button>
+                <button id ='2' class = 'numbers' value = 2>2</button>
+                <button id ='1' class = 'numbers'  value = 1 >1</button><br>
+                <button id ='neg' class = 'numbers'  value = '(-' >neg</button><br>
+                <button id ='0' class = 'numbers'  value= 0>0</button>
+                <button id ='dec' class = 'numbers'  value='.'>.</button>
+           </div>
+          
+           <div id = 'secondCont'>
+                <button id ='bs'  value = 'b' style="background-color: red;">bs</button>
+                <button id = 'plus' class = 'operators'  value='+' style="background-color: rgb(110, 46, 126); width:105%">+</button>
+                <button id ='minus' class = 'operators'  value='-' style="background-color: rgb(11, 69, 73); width:105%">-</button>
+                <button id ='equals' class = 'operators'  value='=' style="background-color: rgb(235, 76, 14); width: 105%">=</button>
+           </div>
+           
+           
+           
+           <div id = 'thirdCont'>
+                 <button id ='clear'  value='clear' style="background-color: red;">C</button>
+                 <button id ='multi' class = 'operators'  value='*' style="background-color: rgb(95, 42, 64); width: 64.2px;">x</button>
+                 <button id ='divide' class = 'operators'  value='/' style="background-color: rgb(123, 124, 50); width:64.2px;">/</button>
+                 <button id ='mudolo' class = 'operators'  value='' style="background-color: red; width: 64.2px">%</button>
+           </div>
+      
     </div>
-    
-    
-    
-    
-    
     
     
     
