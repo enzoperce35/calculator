@@ -1,92 +1,106 @@
-#calcu {
-   width: 600px;
-   height: 450px;
-   border: double thick rosybrown;
+#mainDiv{
+   width: 1200px;
+   height: 600px;
+   
+   }
+   
+   #calcu {
+      width: 600px;
+      height: 450px;
+      border: double thick rosybrown;
+      margin: auto;
+      margin-top: -425px;
+      margin-left: 32%;
+      font-size: 0px;
+      background-color: maroon;
+   
+   }
+   
+   #input{
+      font-size: 30px;
+      background-color: teal;
+      margin-left: 6px;
+      margin-top: 4px;
+       width: 96.7%;
+       height: 130px;
+       border: unset maroon 4px;
+       border-radius: 0px
+   }
+   #allButtons {
    margin: auto;
-   margin-top: 60px;
-   font-size: 0px;
-   background-color: maroon;
-
-}
-
-#input{
-   font-size: 30px;
-   background-color: teal;
    margin-left: 6px;
-   margin-top: 4px;
-    width: 96.7%;
-    height: 130px;
-    border: unset maroon 4px;
-    border-radius: 0px
-}
-#allButtons {
-margin: auto;
-margin-left: 6px;
-margin-top: 6px;
-   height:299px;
-   width: 98%;
-}
-
-
-
-#thirdCont {
-   float: right;
-   height:299px;
-   width: 65px;
-}
-#numbersCont {
-   float: left;
-   height:299px;
-   width: 400px;
-}
-#secondCont {
-   float: left;
-   margin-left: 3px;
-   height:299px;
-   width: 114px
-}
-
-
-
-.numbers{
-   float: left;
-   background-color: sandybrown;
-   font-size: 25px;
-   width: 133.3px;
-   height: 75px;
-   border-radius: 0px;
-}
-.operators{
-   float: left;
-   font-size: 30px;
+   margin-top: 6px;
+      height:299px;
+      width: 98%;
+   }
+   
+   
+   
+   #thirdCont {
+      float: right;
+      height:299px;
+      width: 65px;
+   }
+   #numbersCont {
+      float: left;
+      height:299px;
+      width: 400px;
+   }
+   #secondCont {
+      float: left;
+      margin-left: 3px;
+      height:299px;
+      width: 114px
+   }
+   
+   
+   
+   .numbers{
+      float: left;
+      background-color: sandybrown;
+      font-size: 25px;
+      width: 133.3px;
+      height: 75px;
+      border-radius: 0px;
+   }
+   .operators{
+      float: left;
+      font-size: 30px;
+      width: 100%;
+      height: 62.2px;
+   }
+   .operators[id ='equals'] {
+       float: left;
+       margin-left: 0px;
+       height: 124px;
+       width: 105%;
+   
+   }
+   
+   
+   
+   
+   input:focus, button:focus {
+       outline: none;
+   }
+   
+   #history {
    width: 100%;
-   height: 62.2px;
-}
-.operators[id ='equals'] {
-    float: left;
-    margin-left: 0px;
-    height: 124px;
-    width: 105%;
-
-}
-
-
-
-
-input:focus, button:focus {
-    outline: none;
-}
-
-#history {
-width: 100%;
-height: 50px;
-}
-#bs {
-width: 110%;
-margin-right: -11px;
-height: 50px;
-}
-#clear{
-   height:124px;
-   width: 69px;
-}
+   height: 50px;
+   }
+   #bs {
+   width: 110%;
+   margin-right: -11px;
+   height: 50px;
+   }
+   #clear{
+      height:124px;
+      width: 69px;
+   }
+   
+   #historyList {
+      margin-top: 120px;
+      margin-left: 160px;
+      height: 400px;
+      width: 200px;
+   }
